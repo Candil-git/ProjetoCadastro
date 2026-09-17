@@ -88,7 +88,7 @@
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
-            tabPageCadastro.Click += tabPageCadastro_Click;
+            
             // 
             // txtEstado
             // 
@@ -156,7 +156,6 @@
             txtDataNascimento.TrailingIcon = null;
             txtDataNascimento.UseSystemPasswordChar = false;
             txtDataNascimento.ValidatingType = null;
-            txtDataNascimento.Click += materialMaskedTextBox1_Click;
             // 
             // btnSalvar
             // 
@@ -198,6 +197,7 @@
             btnCancelar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnCancelar.UseAccentColor = false;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtSenha
             // 
@@ -229,7 +229,6 @@
             txtSenha.TextAlign = HorizontalAlignment.Left;
             txtSenha.TrailingIcon = null;
             txtSenha.UseSystemPasswordChar = false;
-            txtSenha.Click += txtSenha_Click;
             // 
             // txtCidade
             // 
@@ -323,7 +322,7 @@
             txtEndereco.TextAlign = HorizontalAlignment.Left;
             txtEndereco.TrailingIcon = null;
             txtEndereco.UseSystemPasswordChar = false;
-            txtEndereco.Click += txt_Click;
+            
             // 
             // txtNome
             // 
@@ -422,6 +421,7 @@
             btnExcluir.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnExcluir.UseAccentColor = false;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnEditar
             // 
@@ -463,6 +463,7 @@
             btnNovo.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnNovo.UseAccentColor = false;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // livAlunos
             // 
@@ -493,7 +494,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CADASTRO DE ALUNO";
             FormClosing += FormCadastroAluno_FormClosing;
-            Load += FormCadastroAluno_Load;
             tabControlCadastro.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
             tabPageCadastro.PerformLayout();

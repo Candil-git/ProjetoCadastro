@@ -1,33 +1,23 @@
-﻿using ReaLTaiizor.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Text;
-using System.Windows.Forms;
+﻿using ReaLTaiizor.Controls;
+using ReaLTaiizor.Forms;
 
 namespace ProjetoCadastro
 {
     public partial class FormCadastroAluno : MaterialForm
     {
 
+        #region VARIÁVEIS
         string alunosFileName = "alunos.txt";
         bool isAlteracao = false;
         int indexSelecionado = 0;
-
+        #endregion
 
         public FormCadastroAluno()
         {
             InitializeComponent();
         }
 
-        private void FormCadastroAluno_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        #region AÇÕES
         private void FormCadastroAluno_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.ApplicationExitCall)
@@ -36,29 +26,43 @@ namespace ProjetoCadastro
             }
         }
 
-        private void tabPageCadastro_Click(object sender, EventArgs e)
+        private void btnExcluir_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void txt_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialMaskedTextBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSenha_Click(object sender, EventArgs e)
-        {
-
+            var resposta = MessageBox.Show("Deseja realmente excluir o aluno selecionado?", "Pergunta", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes;
+            if (resposta)
+            {
+                indexSelecionado = livAlunos.SelectedItems[0].Index;
+                Excluir();
+                CarregaListView();
+            }
+            else
+            {
+                MessageBox.Show("Selecione algun aluno", "Atenção!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
             Editar();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+            tabControlCadastro.SelectedIndex = 0;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var resposta = MessageBox.Show("Atenção: Informações não salvas serão perdidas.\n Deseja Cancelar?", "Pergunta", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes;
+
+            if (resposta)
+            {
+                LimparCampos();
+                tabControlCadastro.SelectedIndex = 1;
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -79,7 +83,9 @@ namespace ProjetoCadastro
         {
             CarregaListView();
         }
+        #endregion
 
+        #region MÉTODOS
         private bool ValidaFormulario()
         {
 
@@ -187,6 +193,27 @@ namespace ProjetoCadastro
             }
         }
 
-      
+        private void LimparCampos()
+        {
+            isAlteracao = false;
+
+            foreach (var control in tabPageCadastro.Controls)
+            {
+                if (control is MaterialTextBoxEdit)
+                    ((MaterialTextBoxEdit)control).Clear();
+                if (control is MaterialMaskedTextBox)
+                    ((MaterialMaskedTextBox)control).Clear();
+            }
+        }
+
+        private void Excluir()
+        {
+            var alunos = File.ReadAllLines(alunosFileName).ToList();
+            alunos.RemoveAt(indexSelecionado);
+            File.WriteAllLines(alunosFileName, alunos);
+        }
+
+        #endregion
+
     }
 }
