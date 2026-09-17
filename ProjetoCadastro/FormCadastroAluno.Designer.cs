@@ -401,6 +401,7 @@
             tabPageConsulta.TabIndex = 1;
             tabPageConsulta.Text = "Consulta";
             tabPageConsulta.UseVisualStyleBackColor = true;
+            tabPageConsulta.Enter += tabPageConsulta_Enter;
             // 
             // btnExcluir
             // 
@@ -441,6 +442,7 @@
             btnEditar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnEditar.UseAccentColor = false;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnNovo
             // 
@@ -470,6 +472,7 @@
             livAlunos.Size = new Size(535, 290);
             livAlunos.TabIndex = 0;
             livAlunos.UseCompatibleStateImageBehavior = false;
+            livAlunos.MouseDoubleClick += livAlunos_MouseDoubleClick;
             // 
             // imageList
             // 
